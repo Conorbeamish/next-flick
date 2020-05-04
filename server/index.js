@@ -5,6 +5,8 @@ const   express                         = require("express"),
         errorHandler                    = require("./handlers/error"),
         cors                            = require("cors"),
         authRoutes                      = require("./routes/auth"),
+        movieRoutes                     = require("./routes/movies"),
+        searchRoutes                    = require("./routes/search"),
         {loginRequired, correctUser}    = require("./middleware/auth");
 
 const app = express()
@@ -15,6 +17,20 @@ app.use(bodyParser.json());
 
 //Auth Routes
 app.use("/api/auth", authRoutes)
+
+//Movie Routes
+app.use(
+    "/api/users/:id/movies",
+    loginRequired,
+    correctUser, 
+    movieRoutes
+)
+
+//Search Routes
+app.use(
+    "/api/search",
+    searchRoutes
+)
 
 app.use((req, res, next) => {
     let err = new Error("Not Found")

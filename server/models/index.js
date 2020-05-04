@@ -12,3 +12,4 @@ mongoose.connect(process.env.MONGO_URI || "mongodb://localhost/next-flick", {
 .catch(err => console.log(err));
 
 module.exports.User = require("./user");
+module.exports.Movie = require("./movie");
