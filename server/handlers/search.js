@@ -3,11 +3,12 @@ const axios = require("axios");
 
 exports.searchMovies = async function(req, res, next){
     const   APIkey = process.env.API_KEY,
-            URL = "https://api.themoviedb.org/3/search/movie?api_key={",
             query = req.body.query;
-    axios.get(`${URL}${APIkey}}&query=${query}`)
-    .then( data => {
-        return res.status(200).json(data);
+            page = req.body.page;
+    const URL = `https://api.themoviedb.org/3/search/movie?api_key=${APIkey}&query=${query}&page=${page}`
+    axios.get(URL)
+    .then(response => {
+        return res.status(200).send(response.data);
     })
     .catch(err => {
         return next(err)
