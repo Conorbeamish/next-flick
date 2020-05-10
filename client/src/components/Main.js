@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import jwtDecode from "jwt-decode"
 import { setAuthToken } from '../utils/auth';
 import {CurrentUserContext} from "../contexts/CurrentUser";
-import { BrowserRouter as Switch, Route} from "react-router-dom";
+import {Switch, Route,} from "react-router-dom";
 
 const Main = (props) => {
     const {dispatchUser} = useContext(CurrentUserContext)

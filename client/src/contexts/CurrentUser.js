@@ -12,5 +12,4 @@ const CurrentUserProvider = (props) => {
     )
 }
 
-
 export default CurrentUserProvider;
