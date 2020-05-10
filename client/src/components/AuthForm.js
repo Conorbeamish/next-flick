@@ -1,6 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import {authUser} from "../utils/auth";
+import {CurrentUserContext} from "../contexts/CurrentUser";
 
 const AuthForm = (props) => {
+    const {dispatchUser} = useContext(CurrentUserContext)
     const[credentials, setCredentials] = useState({
         username : "",
         email : "",
@@ -10,7 +13,9 @@ const AuthForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const authType = props.signup ? "signup" : "signin";
-
+        authUser(authType, credentials).then( user => {
+            dispatchUser({type: "SET_CURRENT_USER", user})
+        })
     }
 
     const handleChange = (e) => {
