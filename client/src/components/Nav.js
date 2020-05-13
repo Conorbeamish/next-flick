@@ -5,24 +5,31 @@ import {CurrentUserContext} from "../contexts/CurrentUser";
 
 
 const Nav = () => {
-    const {dispatchUser} = useContext(CurrentUserContext)
+    const {currentUser, dispatchUser} = useContext(CurrentUserContext)
+    const {isAuthenticated, user} = currentUser;
+
     const handleLogout = () => {
         logout()
         dispatchUser({type: "SET_CURRENT_USER", user: ""})
     }
-
+    
     return (
         <nav>
             <h1>Next-Flick</h1>
             <ul>
-                <li><Link to="/home">Home</Link></li>
-                <li><Link to="/signup">Sign Up</Link></li>
-                <li><Link to="/signin">Sign In</Link></li>
-                <li>
-                    <button onClick={handleLogout}>
-                        <Link to="/">Log out</Link>
-                    </button>
-                </li>
+                <li><Link to="/">Home</Link></li>
+
+                {!isAuthenticated && <div>
+                    <li><Link to="/signup">Sign Up</Link></li>
+                    <li><Link to="/signin">Sign In</Link></li>
+                </div> } 
+
+                {isAuthenticated && <div>
+                    <li>
+                        <Link onClick={handleLogout} to="/">Log out</Link>
+                    </li>
+                    <div>{user.username}</div>
+                </div>}
             </ul>
         </nav>
     );

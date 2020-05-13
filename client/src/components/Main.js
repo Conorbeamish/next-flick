@@ -1,6 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import AuthForm from "./AuthForm"
 import Nav from "./Nav";
+import Landing from "./Landing"
 import jwtDecode from "jwt-decode"
 import { setAuthToken } from '../utils/auth';
 import {CurrentUserContext} from "../contexts/CurrentUser";
@@ -25,6 +26,9 @@ const Main = (props) => {
         <Router>
             <Nav />
             <Switch>
+                <Route path="/" exact render={(props) => 
+                    <Landing {...props}/>
+                } />
                 <Route path="/signup" render={(props) => 
                     <AuthForm {...props} signup buttonText="Sign Up"/> 
                 } />
