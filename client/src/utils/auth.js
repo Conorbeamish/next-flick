@@ -18,8 +18,7 @@ export function authUser(type, userData){
                 return resolve(user);
             }
         ).catch( err => {
-            console.log(err.message)
-            reject();
+            return reject(err.message);
         })
     })
 }

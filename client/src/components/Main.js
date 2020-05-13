@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import jwtDecode from "jwt-decode"
 import { setAuthToken } from '../utils/auth';
 import {CurrentUserContext} from "../contexts/CurrentUser";
-import {Switch, Route,} from "react-router-dom";
+import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
 
 const Main = (props) => {
     const {dispatchUser} = useContext(CurrentUserContext)
@@ -22,17 +22,17 @@ const Main = (props) => {
     }, [])
     
     return (
-        <div>
+        <Router>
             <Nav />
             <Switch>
-                <Route path="/signup">
-                <AuthForm  signup buttonText="Sign Up"/>
-                </Route>
-                <Route path="/signin">
-                <AuthForm signin buttonText="Sign In"/>
-                </Route>
+                <Route path="/signup" render={(props) => 
+                    <AuthForm {...props} signup buttonText="Sign Up"/> 
+                } />
+                <Route path="/signin" render={(props) => 
+                    <AuthForm {...props} signin buttonText="Sign In"/> 
+                } />
             </Switch>
-        </div>
+        </Router>
     );
 }
  
