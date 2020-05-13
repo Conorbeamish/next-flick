@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {apiCall} from "../utils/api";
 import useResults from "../hooks/useResults";
 import useError from "../hooks/useError";
+import MovieList from "./MovieList";
 
 const Search = (props) => {
     const [query, setQuery] = useState("");
@@ -11,17 +12,21 @@ const Search = (props) => {
         e.preventDefault()
         apiCall("get", `/api/search/?query=${query}`)
         .then(res => {
-            setResults(res);
+            setResults(res.results);
         })
         .catch(err => addError(err))
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <div>
+            <form onSubmit={handleSubmit}>
+            {error && <div>{error}</div>}
             <input type="text" value={query} onChange={e => setQuery(e.target.value)}/>
             <button type="submit">
                 Search
             </button>
-        </form> 
+            </form> 
+            {results && <MovieList movies={results}/>}
+        </div>
     );
 }
  
