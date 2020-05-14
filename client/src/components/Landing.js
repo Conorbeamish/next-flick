@@ -1,11 +1,17 @@
 import React from 'react';
-import Search from "./Search"
+import {Link} from "react-router-dom";
+
 
 const Landing = (props) => {
     return (
         <div>
             <h1>Next Flick</h1>
-            <Search history={props.history}/>
+            <Link to="/search">
+                Search
+            </Link>
+            <Link to="/mymovies">
+                My Movies
+            </Link>
         </div>
     );
 }

@@ -2,13 +2,17 @@ import React, {useContext, useEffect} from 'react';
 import AuthForm from "./AuthForm"
 import Nav from "./Nav";
 import Landing from "./Landing"
+import Search from "./Search"
+import MyMovies from './MyMovies';
+import ProtectedRoute from "./ProtectedRoute";
 import jwtDecode from "jwt-decode"
 import { setAuthToken } from '../utils/auth';
 import {CurrentUserContext} from "../contexts/CurrentUser";
 import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
 
+
 const Main = (props) => {
-    const {dispatchUser} = useContext(CurrentUserContext)
+    const {currentUser, dispatchUser} = useContext(CurrentUserContext)
 
     useEffect(() => {
     //Rehydrate User
@@ -35,6 +39,10 @@ const Main = (props) => {
                 <Route path="/signin" render={(props) => 
                     <AuthForm {...props} signin buttonText="Sign In"/> 
                 } />
+                <Route path="/search" render={(props) => 
+                    <Search {...props} />
+                } />
+                <ProtectedRoute path="/mymovies" currentUser={currentUser} component={MyMovies} />
             </Switch>
         </Router>
     );

@@ -8,7 +8,7 @@ const MovieList = (props) => {
 
     return (
         <div>
-            <h3>Movie List</h3>
+            <h3>{props.title}</h3>
             <div>{movieList}</div>
         </div>
     );

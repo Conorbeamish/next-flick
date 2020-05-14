@@ -20,7 +20,7 @@ const AuthForm = (props) => {
             dispatchUser({type: "SET_CURRENT_USER", user})
         })
         .then(() => {
-            props.history.push("/")
+            props.history.goBack();
         })
         .catch( err => 
             addError(err)
@@ -38,13 +38,13 @@ const AuthForm = (props) => {
     return ( 
         <form onSubmit={handleSubmit}>
             <label htmlFor="email">Email</label>
-            <input name="email" type="email" autocomplete="off" required value={credentials.email} onChange={handleChange} />
+            <input name="email" type="email" autoComplete="off" required value={credentials.email} onChange={handleChange} />
             <label htmlFor="password">Password</label>
             <input name="password" type="Password" required value={credentials.password}  onChange={handleChange}/>
             {props.signup && (
                 <div>
                     <label htmlFor="username">Username</label>
-                    <input name="username" type="text" autocomplete="off" required value={credentials.username}  onChange={handleChange}/>
+                    <input name="username" type="text" autoComplete="off" required value={credentials.username}  onChange={handleChange}/>
                 </div>
             )}
             <button type="submit">{props.buttonText}</button>
