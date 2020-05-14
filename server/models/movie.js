@@ -4,7 +4,7 @@ const   mongoose    = require("mongoose"),
 
 const movieSchema = new mongoose.Schema({
     info: {
-        type: String
+        type: Array
     },
     watched: {
         type: Boolean,

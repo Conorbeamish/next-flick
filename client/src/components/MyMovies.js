@@ -3,6 +3,7 @@ import {CurrentUserContext} from "../contexts/CurrentUser";
 import useResults from "../hooks/useResults";
 import {apiCall} from "../utils/api";
 import useError from '../hooks/useError';
+import MovieList from './MovieList';
 
 const SavedMovies = (props) => {
     const [listType, setListType] = useState("");
@@ -24,12 +25,13 @@ const SavedMovies = (props) => {
     return (
         <div>
             <h3>My Movies</h3>
-            {listType !== "watchlist" &&             
-                <button onClick={handleClick} name="watchlist">Go to my watch list...</button>
+            {listType !== "Watch List" &&             
+                <button onClick={handleClick} name="Watch List">Go to my watch list...</button>
             }
-            {listType !== "seenlist" && 
-                <button onClick={handleClick} name="seenlist">Go to my seen list...</button>
+            {listType !== "Seen List" && 
+                <button onClick={handleClick} name="Seen List">Go to my seen list...</button>
             }
+            {/* {results && <MovieList movies={results} title={listType}/>} */}
         </div>
     );
 }
