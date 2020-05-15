@@ -24,6 +24,7 @@ const Search = (props) => {
         }
     }
     const title = "Search Results"
+    
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -33,7 +34,7 @@ const Search = (props) => {
                 Search
             </button>
             </form> 
-            {results && <MovieList movies={results} title={title}/>}
+            {results && <MovieList watched={false} movies={results} title={title} />}
         </div>
     );
 }
